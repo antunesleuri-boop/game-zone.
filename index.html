@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GAME ZONE</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080b12;color:#fff;
+ font-family:Arial,sans-serif
+}
+header{
+ position:sticky;top:0;z-index:5;
+ background:#0c1220ee;backdrop-filter:blur(12px);
+ border-bottom:1px solid #26354c;
+ padding:18px 5%;
+ display:flex;align-items:center;
+ justify-content:space-between;gap:15px
+}
+.logo{font-size:25px;font-weight:900;letter-spacing:2px}
+.logo span{color:#269cff}
+nav{color:#aabbd0;font-size:14px}
+main{max-width:1200px;margin:auto;padding:28px 5%}
+.hero{
+ min-height:260px;border-radius:20px;overflow:hidden;
+ padding:35px;display:flex;align-items:center;
+ background:linear-gradient(90deg,#07111fee,#07111d77),
+ url('https://cdn.akamai.steamstatic.com/steam/apps/1677740/header.jpg')
+ center/cover;
+ border:1px solid #28486c;
+}
+.hero h2{font-size:36px;margin:0 0 12px}
+.hero p{color:#d2deed;max-width:450px;line-height:1.6}
+.tag{color:#54b4ff;font-weight:bold;font-size:12px}
+.search{
+ display:flex;align-items:center;gap:12px;
+ background:#131e30;border:1px solid #293c57;
+ border-radius:12px;padding:15px 18px;margin:30px 0
+}
+.search input{
+ flex:1;min-width:0;background:none;border:0;
+ outline:0;color:white;font-size:16px
+}
+h3{font-size:23px;margin:30px 0 20px}
+.grid{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:22px
+}
+.game{
+ overflow:hidden;background:#121b2a;
+ border:1px solid #253750;border-radius:16px;
+ transition:.2s
+}
+.game:hover{border-color:#269cff;transform:translateY(-3px)}
+.cover{width:100%;height:155px;object-fit:cover;display:block;background:#202b3c}
+.info{padding:18px}
+.info h4{font-size:19px;margin:0 0 8px}
+.info p{font-size:13px;color:#9eafc5;min-height:32px;line-height:1.5}
+button{
+ width:100%;border:0;border-radius:9px;
+ background:#168cff;color:white;padding:13px;
+ font-size:15px;font-weight:bold;cursor:pointer
+}
+button:active{background:#0868c5}
+.empty{display:none;color:#aabbd0;padding:20px}
+footer{
+ text-align:center;color:#71839b;font-size:12px;
+ padding:35px 15px;border-top:1px solid #202c3e;margin-top:45px
+}
+@media(min-width:750px){
+ .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .cover{height:190px}
+ .hero{min-height:310px}
+}
+@media(max-width:420px){
+ .hero{padding:24px;min-height:220px}
+ .hero h2{font-size:28px}
+ .grid{gap:12px}
+ .info{padding:13px}
+ .cover{height:125px}
+ .info h4{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">GAME <span>ZONE</span></div>
+ <nav>INÍCIO &nbsp; • &nbsp; JOGOS</nav>
+</header>
+
+<main>
+ <section class="hero">
+  <div>
+   <div class="tag">SUA CENTRAL GAMER</div>
+   <h2>SEU PRÓXIMO JOGO COMEÇA AQUI.</h2>
+   <p>Encontre seus jogos favoritos e acesse tudo em um só lugar.</p>
+  </div>
+ </section>
+
+ <div class="search">
+  <span>⌕</span>
+  <input id="pesquisa" type="search"
+   placeholder="Pesquisar jogos..." oninput="filtrar()">
+ </div>
+
+ <h3>Explore os jogos</h3>
+
+ <div class="grid" id="jogos">
+
+  <article class="game" data-nome="roblox">
+   <img class="cover"
+    src="https://tr.rbxcdn.com/180DAY-9f6e3c4e7b8b8a1b8b8b8b8b8b8b8b8b/768/432/Image/Webp/noFilter"
+    onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Roblox%20Logo%202022.svg'"
+    alt="Roblox">
+   <div class="info">
+    <h4>Roblox</h4>
+    <p>Explore milhões de experiências.</p>
+    <button onclick="abrirJogo('com.roblox.client','https://play.google.com/store/apps/details?id=com.roblox.client')">JOGAR</button>
+   </div>
+  </article>
+
+  <article class="game" data-nome="stumble guys">
+   <img class="cover"
+    src="https://cdn.akamai.steamstatic.com/steam/apps/1677740/header.jpg"
+    alt="Stumble Guys">
+   <div class="info">
+    <h4>Stumble Guys</h4>
+    <p>Corra, desvie e vença os desafios.</p>
+    <button onclick="abrirJogo('com.kitkagames.fallbuddies','https://play.google.com/store/apps/details?id=com.kitkagames.fallbuddies')">JOGAR</button>
+   </div>
+  </article>
+
+  <article class="game" data-nome="poppy playtime">
+   <img class="cover"
+    src="https://cdn.akamai.steamstatic.com/steam/apps/1721470/header.jpg"
+    alt="Poppy Playtime">
+   <div class="info">
+    <h4>Poppy Playtime</h4>
+    <p>Explore a misteriosa fábrica de brinquedos.</p>
+    <button onclick="abrirJogo('com.MOBGames.PoppyMobileChap1','https://play.google.com/store/apps/details?id=com.MOBGames.PoppyMobileChap1')">JOGAR</button>
+   </div>
+  </article>
+
+  <article class="game" data-nome="efootball futebol">
+   <img class="cover"
+    src="https://cdn.akamai.steamstatic.com/steam/apps/1665460/header.jpg"
+    alt="eFootball">
+   <div class="info">
+    <h4>eFootball</h4>
+    <p>Entre em campo e monte seu time.</p>
+    <button onclick="abrirJogo('com.konami.pesam','https://play.google.com/store/apps/details?id=com.konami.pesam')">JOGAR</button>
+   </div>
+  </article>
+
+ </div>
+
+ <p class="empty" id="vazio">Nenhum jogo encontrado.</p>
+</main>
+
+<footer>
+ GAME ZONE © 2026 — Jogos pertencentes aos seus respectivos criadores.
+</footer>
+
+<script>
+function filtrar(){
+ const termo=document.getElementById('pesquisa').value.toLowerCase();
+ let quantidade=0;
+ document.querySelectorAll('.game').forEach(jogo=>{
+  const aparece=jogo.dataset.nome.includes(termo);
+  jogo.style.display=aparece?'':'none';
+  if(aparece) quantidade++;
+ });
+ document.getElementById('vazio').style.display=quantidade?'none':'block';
+}
+
+function abrirJogo(pacote,loja){
+ const intent='intent://launch/#Intent;'+
+ 'action=android.intent.action.MAIN;'+
+ 'category=android.intent.category.LAUNCHER;'+
+ 'package='+pacote+';'+
+ 'S.browser_fallback_url='+encodeURIComponent(loja)+
+ ';end';
+ window.location.href=intent;
+}
+</script>
+</body>
+  </html>
+  
